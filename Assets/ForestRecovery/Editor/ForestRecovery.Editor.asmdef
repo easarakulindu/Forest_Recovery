@@ -1,0 +1,8 @@
+{
+  "name": "ForestRecovery.Editor",
+  "rootNamespace": "ForestRecovery.Editor",
+  "references": [],
+  "includePlatforms": [
+    "Editor"
+  ]
+}
