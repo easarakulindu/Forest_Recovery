@@ -28,6 +28,7 @@ namespace ForestRecovery.Editor
                 throw new System.InvalidOperationException("Scene already exists. Open it instead of overwriting it.");
             CreateStructure(out var camera);
             var environment = AddEnvironment();
+            var ranger = AddRanger(camera);
             SaveSceneAndLaunch();
         }
 
@@ -102,6 +103,41 @@ namespace ForestRecovery.Editor
                 Shape("Rock", PrimitiveType.Sphere, point + Vector3.up * 0.45f, new Vector3(1.8f, 1.1f, 1.5f), stone, environment);
 
             return environment;
+        }
+
+        internal static RangerMotor AddRanger(Camera camera)
+        {
+            var bark = Material("Bark", new Color(0.28f, 0.20f, 0.13f));
+            var uniform = Material("Ranger jacket", new Color(0.71f, 0.31f, 0.14f));
+            var skin = Material("Ranger face", new Color(0.77f, 0.57f, 0.36f));
+            var dark = Material("Ranger boots", new Color(0.13f, 0.20f, 0.19f));
+            var player = new GameObject("Ranger / WASD");
+            player.layer = 2; // Ignore Raycast: camera and interaction checks ignore the ranger.
+            player.transform.position = new Vector3(0, 0.15f, -9);
+            var controller = player.AddComponent<CharacterController>();
+            controller.height = 1.8f;
+            controller.radius = 0.33f;
+            controller.center = new Vector3(0, 0.9f, 0);
+            controller.stepOffset = 0.3f;
+            controller.slopeLimit = 45;
+            var body = new GameObject("Ranger greybox model").transform;
+            body.SetParent(player.transform, false);
+            Shape("Jacket", PrimitiveType.Capsule, player.transform.position + Vector3.up * 0.85f,
+                new Vector3(0.65f, 0.55f, 0.55f), uniform, body, false);
+            Shape("Head", PrimitiveType.Sphere, player.transform.position + Vector3.up * 1.55f,
+                Vector3.one * 0.42f, skin, body, false);
+            Shape("Hat brim", PrimitiveType.Cylinder, player.transform.position + Vector3.up * 1.76f,
+                new Vector3(0.7f, 0.035f, 0.7f), bark, body, false);
+            Shape("Hat crown", PrimitiveType.Cylinder, player.transform.position + Vector3.up * 1.86f,
+                new Vector3(0.4f, 0.1f, 0.4f), bark, body, false);
+            for (int side = -1; side <= 1; side += 2)
+                Shape("Boot", PrimitiveType.Cube, player.transform.position + new Vector3(side * 0.17f, 0.2f, 0.08f),
+                    new Vector3(0.23f, 0.4f, 0.32f), dark, body, false);
+            var motor = player.AddComponent<RangerMotor>();
+            motor.body = body;
+
+            motor.cameraTransform = camera.transform;
+            return motor;
         }
 
         private static Material Material(string name, Color color)

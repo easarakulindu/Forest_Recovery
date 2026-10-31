@@ -1,7 +1,9 @@
 {
   "name": "ForestRecovery.Editor",
   "rootNamespace": "ForestRecovery.Editor",
-  "references": [],
+  "references": [
+    "ForestRecovery.Runtime"
+  ],
   "includePlatforms": [
     "Editor"
   ]

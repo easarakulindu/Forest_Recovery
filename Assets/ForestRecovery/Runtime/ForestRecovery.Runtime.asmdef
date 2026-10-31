@@ -1,0 +1,5 @@
+{
+  "name": "ForestRecovery.Runtime",
+  "rootNamespace": "ForestRecovery",
+  "references": ["Unity.InputSystem"]
+}
