@@ -30,6 +30,7 @@ namespace ForestRecovery.Editor
             var environment = AddEnvironment();
             var ranger = AddRanger(camera);
             AddCameraFollow(camera, ranger);
+            var mission = AddSeeds(environment, ranger);
             SaveSceneAndLaunch();
         }
 
@@ -147,6 +148,26 @@ namespace ForestRecovery.Editor
             follow.target = ranger.transform;
         }
 
+        internal static ForestMission AddSeeds(Transform environment, RangerMotor ranger)
+        {
+            var gold = Material("Seed gold", new Color(1f, 0.76f, 0.19f));
+            var items = new List<ForestInteractable>();
+            Vector3[] seeds = { new Vector3(-2, 0, -4), new Vector3(-6, 0, 0), new Vector3(-5, 0, 6) };
+            for (int i = 0; i < seeds.Length; i++)
+            {
+                var seed = Item("Seed " + (i + 1), ForestAction.Seed, seeds[i], environment);
+                seed.availableVisual = new GameObject("Golden seed marker");
+                seed.availableVisual.transform.SetParent(seed.transform, false);
+                Shape("Seed", PrimitiveType.Sphere, seeds[i] + Vector3.up * 0.55f, Vector3.one * 0.65f, gold, seed.availableVisual.transform, false);
+                Shape("Seed pedestal", PrimitiveType.Cylinder, seeds[i] + Vector3.up * 0.08f, new Vector3(1.1f, 0.08f, 1.1f), gold, seed.availableVisual.transform, false);
+                items.Add(seed);
+            }
+            var mission = new GameObject("Stage 1 / mission + HUD").AddComponent<ForestMission>();
+            mission.ranger = ranger;
+            mission.interactables = items.ToArray();
+            return mission;
+        }
+
         private static Material Material(string name, Color color)
         {
             string path = "Assets/ForestRecovery/Materials/" + name.Replace(" ", "_") + ".mat";
@@ -179,5 +200,15 @@ namespace ForestRecovery.Editor
             Shape(name + " / crown", PrimitiveType.Sphere, point + Vector3.up * 3 * size,
                 new Vector3(2.8f, 2.9f, 2.8f) * size, leaves, parent, false);
         }
+        private static ForestInteractable Item(string name, ForestAction action, Vector3 position, Transform parent)
+        {
+            var root = new GameObject(name);
+            root.transform.SetParent(parent, false);
+            root.transform.position = position;
+            var item = root.AddComponent<ForestInteractable>();
+            item.action = action;
+            return item;
+        }
+
     }
 }
