@@ -10,7 +10,7 @@ namespace ForestRecovery
         public float interactionRange = 2.2f;
         public RestorationState State { get; private set; }
         public ForestInteractable Nearby { get; private set; }
-        public string Feedback { get; private set; } = "Collect the three golden seeds.";
+        public string Feedback { get; private set; } = "Collect golden seeds, then plant on amber circles.";
 
         private void Awake() => State = new RestorationState();
 
@@ -46,7 +46,9 @@ namespace ForestRecovery
             var item = FindNearby();
             if (item == null) return false;
             bool success = item.Apply(State);
-            Feedback = success ? "Seed collected!" : "This item cannot be used.";
+            if (!success) Feedback = "Planting needs 1 seed. Collect a golden seed first.";
+            else if (item.action == ForestAction.Seed) Feedback = "Seed collected! Use it on an amber planting circle.";
+            else Feedback = "Tree planted!";
             return success;
         }
 
@@ -69,15 +71,16 @@ namespace ForestRecovery
             float height = Screen.height / scale;
             Panel(new Rect(24, 24, 440, 160));
             GUI.Label(new Rect(42, 36, 410, 34), "FOREST RECOVERY", title);
-            GUI.Label(new Rect(42, 76, 410, 30), "Seeds held: " + State.Seeds, text);
+            GUI.Label(new Rect(42, 76, 410, 30), $"Seeds held: {State.Seeds}    Planted: {State.TreesPlanted}/{RestorationState.TargetTrees}", text);
 
             Panel(new Rect(width - 344, 24, 320, 150));
             GUI.Label(new Rect(width - 326, 38, 290, 26), "CONTROLS", text);
-            GUI.Label(new Rect(width - 326, 73, 290, 90), "WASD  Move\nHold right mouse  Look around\nLeft / Right arrows  Turn camera\nE  Collect    Esc  Cursor", small);
+            GUI.Label(new Rect(width - 326, 73, 290, 90), "WASD  Move\nHold right mouse  Look around\nLeft / Right arrows  Turn camera\nE  Collect or plant    Esc  Cursor", small);
 
             Panel(new Rect(24, height - 148, width - 48, 124));
-            GUI.Label(new Rect(44, height - 138, width - 88, 30), "Collect the golden seeds.", text);
-            string instruction = Nearby != null ? "[ E ]  " + Nearby.Label : "Walk up to a golden seed.";
+            GUI.Label(new Rect(44, height - 138, width - 88, 30), State.Complete ? "Clearing restored! All three trees are planted." :
+                State.Seeds == 0 ? "Collect a golden seed." : "Plant a tree on an amber circle (1 seed).", text);
+            string instruction = Nearby != null ? "[ E ]  " + Nearby.Label : "Golden orbs = seeds   /   Amber circles = planting plots";
             GUI.Label(new Rect(44, height - 100, width - 88, 28), instruction, text);
             GUI.Label(new Rect(44, height - 64, width - 88, 26), Feedback, small);
             GUI.matrix = previous;

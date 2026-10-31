@@ -31,6 +31,7 @@ namespace ForestRecovery.Editor
             var ranger = AddRanger(camera);
             AddCameraFollow(camera, ranger);
             var mission = AddSeeds(environment, ranger);
+            AddPlanting(environment, mission);
             SaveSceneAndLaunch();
         }
 
@@ -166,6 +167,30 @@ namespace ForestRecovery.Editor
             mission.ranger = ranger;
             mission.interactables = items.ToArray();
             return mission;
+        }
+
+        internal static void AddPlanting(Transform environment, ForestMission mission)
+        {
+            var bark = Material("Bark", new Color(0.28f, 0.20f, 0.13f));
+            var healthy = Material("Healthy moss", new Color(0.25f, 0.43f, 0.28f));
+            var fresh = Material("New growth", new Color(0.45f, 0.77f, 0.29f));
+            var amber = Material("Planting marker", new Color(0.98f, 0.58f, 0.22f));
+            var items = mission.interactables.ToList();
+            for (int i = 0; i < RestorationState.TargetTrees; i++)
+            {
+                Vector3 point = new Vector3(0.5f, 0, 1 + i * 4.5f);
+                var plot = Item("Planting plot " + (i + 1), ForestAction.Plant, point, environment);
+                plot.availableVisual = Shape("Amber planting circle", PrimitiveType.Cylinder, point + Vector3.up * 0.035f,
+                    new Vector3(2.4f, 0.035f, 2.4f), amber, plot.transform, false);
+                plot.restoredVisual = new GameObject("Restored patch + sapling");
+                plot.restoredVisual.transform.SetParent(plot.transform, false);
+                Shape("Restored moss", PrimitiveType.Cylinder, point + Vector3.up * 0.045f,
+                    new Vector3(2.5f, 0.045f, 2.5f), healthy, plot.restoredVisual.transform, false);
+                Tree("Planted sapling", point, 0.48f, bark, fresh, plot.restoredVisual.transform);
+                plot.restoredVisual.SetActive(false);
+                items.Add(plot);
+            }
+            mission.interactables = items.ToArray();
         }
 
         private static Material Material(string name, Color color)
