@@ -48,7 +48,7 @@ namespace ForestRecovery
             bool success = item.Apply(State);
             if (!success) Feedback = "Planting needs 1 seed. Collect a golden seed first.";
             else if (item.action == ForestAction.Seed) Feedback = "Seed collected! Use it on an amber planting circle.";
-            else Feedback = "Tree planted!";
+            else Feedback = "Tree planted! Forest health increased by 20%.";
             return success;
         }
 
@@ -72,6 +72,12 @@ namespace ForestRecovery
             Panel(new Rect(24, 24, 440, 160));
             GUI.Label(new Rect(42, 36, 410, 34), "FOREST RECOVERY", title);
             GUI.Label(new Rect(42, 76, 410, 30), $"Seeds held: {State.Seeds}    Planted: {State.TreesPlanted}/{RestorationState.TargetTrees}", text);
+
+            GUI.Label(new Rect(42, 112, 410, 28), $"Forest health: {State.Health}%", text);
+            Color oldColor = GUI.color;
+            GUI.color = new Color(0.65f, 0.92f, 0.65f);
+            GUI.DrawTexture(new Rect(42, 155, 400 * State.Health / 100f, 8), Texture2D.whiteTexture);
+            GUI.color = oldColor;
 
             Panel(new Rect(width - 344, 24, 320, 150));
             GUI.Label(new Rect(width - 326, 38, 290, 26), "CONTROLS", text);

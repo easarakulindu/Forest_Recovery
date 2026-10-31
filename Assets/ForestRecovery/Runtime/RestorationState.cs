@@ -7,6 +7,9 @@ namespace ForestRecovery
         public int Seeds { get; private set; }
         public int SeedsCollected { get; private set; }
 
+        public const int StartingHealth = 40;
+        // With three plots, each successful planting adds 20 percentage points.
+        public int Health => StartingHealth + (100 - StartingHealth) * TreesPlanted / TargetTrees;
         public int TreesPlanted { get; private set; }
         public bool Complete => TreesPlanted == TargetTrees;
 
