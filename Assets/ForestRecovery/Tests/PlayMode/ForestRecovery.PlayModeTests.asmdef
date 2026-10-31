@@ -1,0 +1,5 @@
+{
+  "name": "ForestRecovery.PlayModeTests",
+  "references": ["ForestRecovery.Runtime", "Unity.InputSystem"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

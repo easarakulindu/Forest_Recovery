@@ -1,0 +1,6 @@
+{
+  "name": "ForestRecovery.EditModeTests",
+  "references": ["ForestRecovery.Runtime"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}
