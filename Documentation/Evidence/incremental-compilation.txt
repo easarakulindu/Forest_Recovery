@@ -1,0 +1,19 @@
+Step 1: Editor C# compilation PASSED (1 source files).
+Step 1: all 0 scene script references resolve to included metadata.
+Step 2: Editor C# compilation PASSED (1 source files).
+Step 2: all 0 scene script references resolve to included metadata.
+Step 3: Runtime C# compilation PASSED (1 source files).
+Step 3: Editor C# compilation PASSED (1 source files).
+Step 3: all 1 scene script references resolve to included metadata.
+Step 4: Runtime C# compilation PASSED (2 source files).
+Step 4: Editor C# compilation PASSED (1 source files).
+Step 4: all 2 scene script references resolve to included metadata.
+Step 5: Runtime C# compilation PASSED (5 source files).
+Step 5: Editor C# compilation PASSED (1 source files).
+Step 5: all 6 scene script references resolve to included metadata.
+Step 6: Runtime C# compilation PASSED (5 source files).
+Step 6: Editor C# compilation PASSED (1 source files).
+Step 6: all 9 scene script references resolve to included metadata.
+Step 7: Runtime C# compilation PASSED (5 source files).
+Step 7: Editor C# compilation PASSED (1 source files).
+Step 7: all 9 scene script references resolve to included metadata.

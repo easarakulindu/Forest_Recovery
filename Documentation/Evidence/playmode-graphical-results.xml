@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.3582395">
+  <test-suite type="TestSuite" id="1012" name="Forest_Recovery" fullname="Forest_Recovery" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.358240" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1018" name="ForestRecovery.PlayModeTests.dll" fullname="/tmp/forest-simplified-validation/Library/ScriptAssemblies/ForestRecovery.PlayModeTests.dll" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.338278" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="108166" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1019" name="ForestRecovery" fullname="ForestRecovery" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.312228" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1020" name="Tests" fullname="ForestRecovery.Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.281617" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1013" name="ForestPrototypeTests" fullname="ForestRecovery.Tests.ForestPrototypeTests" classname="ForestRecovery.Tests.ForestPrototypeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:30Z" duration="27.262106" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1017" name="CameraMovesInFrontOfAnObstruction" fullname="ForestRecovery.Tests.ForestPrototypeTests.CameraMovesInFrontOfAnObstruction" methodname="CameraMovesInFrontOfAnObstruction" classname="ForestRecovery.Tests.ForestPrototypeTests" runstate="Runnable" seed="748694145" result="Passed" start-time="2026-10-31 16:09:03Z" end-time="2026-10-31 16:09:05Z" duration="1.851438" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="FullLoopThroughKeyboardUpdatesResourcesVisualsAndHealth" fullname="ForestRecovery.Tests.ForestPrototypeTests.FullLoopThroughKeyboardUpdatesResourcesVisualsAndHealth" methodname="FullLoopThroughKeyboardUpdatesResourcesVisualsAndHealth" classname="ForestRecovery.Tests.ForestPrototypeTests" runstate="Runnable" seed="1471604494" result="Passed" start-time="2026-10-31 16:09:05Z" end-time="2026-10-31 16:09:15Z" duration="10.335100" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="KeyboardMovementGroundCollisionAndCameraFollow" fullname="ForestRecovery.Tests.ForestPrototypeTests.KeyboardMovementGroundCollisionAndCameraFollow" methodname="KeyboardMovementGroundCollisionAndCameraFollow" classname="ForestRecovery.Tests.ForestPrototypeTests" runstate="Runnable" seed="105757048" result="Passed" start-time="2026-10-31 16:09:15Z" end-time="2026-10-31 16:09:28Z" duration="13.140232" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="PlantingRejectsMissingResourcesAndRemoteInteractions" fullname="ForestRecovery.Tests.ForestPrototypeTests.PlantingRejectsMissingResourcesAndRemoteInteractions" methodname="PlantingRejectsMissingResourcesAndRemoteInteractions" classname="ForestRecovery.Tests.ForestPrototypeTests" runstate="Runnable" seed="472208483" result="Passed" start-time="2026-10-31 16:09:28Z" end-time="2026-10-31 16:09:30Z" duration="1.905831" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/easara/.config/unity3d/DefaultCompany/Forest_Recovery/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

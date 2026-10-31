@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.0338997">
+  <test-suite type="TestSuite" id="1000" name="Forest_Recovery" fullname="Forest_Recovery" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.033900" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1005" name="ForestRecovery.EditModeTests.dll" fullname="/tmp/forest-simplified-validation/Library/ScriptAssemblies/ForestRecovery.EditModeTests.dll" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.028439" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="106255" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1006" name="ForestRecovery" fullname="ForestRecovery" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.028076" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1007" name="Tests" fullname="ForestRecovery.Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.027944" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="RestorationStateTests" fullname="ForestRecovery.Tests.RestorationStateTests" classname="ForestRecovery.Tests.RestorationStateTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.027228" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="ACollectibleCannotBeUsedTwice" fullname="ForestRecovery.Tests.RestorationStateTests.ACollectibleCannotBeUsedTwice" methodname="ACollectibleCannotBeUsedTwice" classname="ForestRecovery.Tests.RestorationStateTests" runstate="Runnable" seed="572483018" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.011169" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="PlantingConsumesOneSeedAndCompletionCapsAtOneHundred" fullname="ForestRecovery.Tests.RestorationStateTests.PlantingConsumesOneSeedAndCompletionCapsAtOneHundred" methodname="PlantingConsumesOneSeedAndCompletionCapsAtOneHundred" classname="ForestRecovery.Tests.RestorationStateTests" runstate="Runnable" seed="1104489989" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.000404" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="PlantingWithoutASeedDoesNotRestore" fullname="ForestRecovery.Tests.RestorationStateTests.PlantingWithoutASeedDoesNotRestore" methodname="PlantingWithoutASeedDoesNotRestore" classname="ForestRecovery.Tests.RestorationStateTests" runstate="Runnable" seed="1956710330" result="Passed" start-time="2026-10-31 16:07:11Z" end-time="2026-10-31 16:07:11Z" duration="0.000168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/easara/.config/unity3d/DefaultCompany/Forest_Recovery/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
