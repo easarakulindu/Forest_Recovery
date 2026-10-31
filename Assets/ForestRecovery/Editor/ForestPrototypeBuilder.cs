@@ -27,6 +27,7 @@ namespace ForestRecovery.Editor
             if (File.Exists(ScenePath))
                 throw new System.InvalidOperationException("Scene already exists. Open it instead of overwriting it.");
             CreateStructure(out var camera);
+            var environment = AddEnvironment();
             SaveSceneAndLaunch();
         }
 
@@ -70,5 +71,70 @@ namespace ForestRecovery.Editor
             AssetDatabase.SaveAssets();
         }
 
+        internal static Transform AddEnvironment()
+        {
+            Directory.CreateDirectory("Assets/ForestRecovery/Materials");
+            AssetDatabase.Refresh();
+            var healthy = Material("Healthy moss", new Color(0.25f, 0.43f, 0.28f));
+            var damaged = Material("Damaged earth", new Color(0.48f, 0.36f, 0.24f));
+            var bark = Material("Bark", new Color(0.28f, 0.20f, 0.13f));
+            var leaves = Material("Canopy", new Color(0.15f, 0.36f, 0.23f));
+            var stone = Material("Stone", new Color(0.43f, 0.49f, 0.46f));
+            Transform environment = new GameObject("Forest / editable greybox").transform;
+            Shape("Healthy forest ground", PrimitiveType.Cube, new Vector3(-8, -0.3f, 2), new Vector3(16, 0.6f, 30), healthy, environment);
+            Shape("Damaged clearing ground", PrimitiveType.Cube, new Vector3(8, -0.3f, 2), new Vector3(16, 0.6f, 30), damaged, environment);
+            // A visible perimeter prevents the ranger leaving the small demo area.
+            Shape("North ridge", PrimitiveType.Cube, new Vector3(0, 0.65f, 17), new Vector3(33, 1.3f, 1), stone, environment);
+            Shape("South ridge", PrimitiveType.Cube, new Vector3(0, 0.65f, -13), new Vector3(33, 1.3f, 1), stone, environment);
+            Shape("West ridge", PrimitiveType.Cube, new Vector3(-16, 0.65f, 2), new Vector3(1, 1.3f, 30), stone, environment);
+            Shape("East ridge", PrimitiveType.Cube, new Vector3(16, 0.65f, 2), new Vector3(1, 1.3f, 30), stone, environment);
+
+            Vector3[] treePositions = { new Vector3(-12, 0, -8), new Vector3(-7, 0, -7), new Vector3(-12, 0, -1),
+                new Vector3(-10, 0, 5), new Vector3(-13, 0, 11), new Vector3(-7, 0, 12), new Vector3(-3, 0, 14),
+                new Vector3(12, 0, 13), new Vector3(13, 0, -8) };
+            for (int i = 0; i < treePositions.Length; i++)
+                Tree("Mature tree " + (i + 1), treePositions[i], 1 + (i % 3) * 0.12f, bark, leaves, environment);
+            Vector3[] stumps = { new Vector3(6, 0, -6), new Vector3(10, 0, -2), new Vector3(11, 0, 5), new Vector3(7, 0, 11) };
+            foreach (var point in stumps)
+                Shape("Logging stump", PrimitiveType.Cylinder, point + Vector3.up * 0.3f, new Vector3(1, 0.3f, 1), bark, environment);
+            Vector3[] rocks = { new Vector3(-9, 0, -3), new Vector3(10, 0, 8), new Vector3(5, 0, 14), new Vector3(-11, 0, 8) };
+            foreach (var point in rocks)
+                Shape("Rock", PrimitiveType.Sphere, point + Vector3.up * 0.45f, new Vector3(1.8f, 1.1f, 1.5f), stone, environment);
+
+            return environment;
+        }
+
+        private static Material Material(string name, Color color)
+        {
+            string path = "Assets/ForestRecovery/Materials/" + name.Replace(" ", "_") + ".mat";
+            var existing = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (existing != null) return existing;
+            var material = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = name };
+            material.SetColor("_BaseColor", color);
+            material.SetFloat("_Smoothness", 0.05f);
+            AssetDatabase.CreateAsset(material, path);
+            return material;
+        }
+
+        private static GameObject Shape(string name, PrimitiveType type, Vector3 position, Vector3 scale,
+            Material material, Transform parent, bool collision = true)
+        {
+            var shape = GameObject.CreatePrimitive(type);
+            shape.name = name;
+            shape.transform.SetParent(parent, false);
+            shape.transform.position = position;
+            shape.transform.localScale = scale;
+            shape.GetComponent<Renderer>().sharedMaterial = material;
+            if (!collision) Object.DestroyImmediate(shape.GetComponent<Collider>());
+            return shape;
+        }
+
+        private static void Tree(string name, Vector3 point, float size, Material bark, Material leaves, Transform parent)
+        {
+            Shape(name + " / trunk", PrimitiveType.Cylinder, point + Vector3.up * 1.25f * size,
+                new Vector3(0.6f, 1.25f, 0.6f) * size, bark, parent);
+            Shape(name + " / crown", PrimitiveType.Sphere, point + Vector3.up * 3 * size,
+                new Vector3(2.8f, 2.9f, 2.8f) * size, leaves, parent, false);
+        }
     }
 }
