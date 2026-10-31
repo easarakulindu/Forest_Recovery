@@ -29,6 +29,7 @@ namespace ForestRecovery.Editor
             CreateStructure(out var camera);
             var environment = AddEnvironment();
             var ranger = AddRanger(camera);
+            AddCameraFollow(camera, ranger);
             SaveSceneAndLaunch();
         }
 
@@ -138,6 +139,12 @@ namespace ForestRecovery.Editor
 
             motor.cameraTransform = camera.transform;
             return motor;
+        }
+
+        internal static void AddCameraFollow(Camera camera, RangerMotor ranger)
+        {
+            var follow = camera.gameObject.AddComponent<RangerCamera>();
+            follow.target = ranger.transform;
         }
 
         private static Material Material(string name, Color color)
